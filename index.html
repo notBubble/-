@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bubble - GitHub</title>
+    <title>Bubble Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <style>
+        /* Your CSS styles here */
         body {
             margin: 0;
             padding: 0;
@@ -61,9 +62,14 @@
         }
 
         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             background-color: rgba(3, 3, 3, 0.5);
             backdrop-filter: blur(20px);
             padding: 10px 0;
+            z-index: 1000; /* Ensure it appears above other content */
         }
 
         .container {
@@ -107,7 +113,7 @@
             justify-content: center;
             flex-grow: 1;
             text-align: center;
-            padding: 50px 0;
+            padding: 100px 0 50px; /* Added top padding */
             opacity: 0;
             transform: translateY(-50px);
             animation: slideIn 0.5s ease forwards;
@@ -166,11 +172,17 @@
         .project h3 {
             font-size: 24px;
             margin-bottom: 10px;
+            cursor: pointer; /* Add cursor pointer to indicate clickability */
         }
 
         .project p {
             font-size: 16px;
             margin-bottom: 10px;
+        }
+
+        .project-details {
+            display: none; /* Hide project details by default */
+            margin-top: 10px;
         }
 
         .project-buttons {
@@ -202,13 +214,18 @@
         .source-button:hover {
             background-color: #5f73a1;
         }
+
+        /* Style for showing project details */
+        .show {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <nav class="navbar">
             <div class="container">
-                <h1>notBubble - GitHub</h1>
+                <h1>Bubble Home</h1>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="https://github.com/notBubble">GitHub</a></li>
@@ -223,8 +240,11 @@
             
             <!-- Dark Room AI Project -->
             <div class="project">
-                <h3>Dark Room AI v0.36</h3>
-                <p>Dark Room AI is an interactive scary story experience designed to immerse you in a mysterious narrative guided by an artificial intelligence.</p>
+                <h3 class="project-title">Dark Room AI v0.36</h3>
+                <div class="project-details">
+                    <p>Dark Room AI is an interactive scary story experience designed to immerse you in a mysterious narrative guided by an artificial intelligence. This project explores the potential of AI in storytelling and aims to provide an engaging and immersive experience for users. The story unfolds as you make choices, shaping the narrative in real-time.</p>
+                    <p>The latest version (v0.36) includes enhanced GUI, improved AI responses, and faster response time. Additionally, future enhancements are planned, such as improved storylines and mobile optimization.</p>
+                </div>
                 <div class="project-buttons">
                     <a class="visit-button" href="https://notbubble.github.io/darkroom">Visit</a>
                     <a class="source-button" href="https://github.com/notBubble/darkroom">Source Code</a>
@@ -233,8 +253,11 @@
 
             <!-- FreePT Project -->
             <div class="project">
-                <h3>FreePT</h3>
-                <p>Welcome to the FreePT project! This repository contains the code for a website where you can use ChatGPT for free.</p>
+                <h3 class="project-title">FreePT</h3>
+                <div class="project-details">
+                    <p>Welcome to the FreePT project! This repository contains the code for a website where you can use ChatGPT for free. FreePT provides a user-friendly interface for interacting with ChatGPT and is open-source under the MIT License.</p>
+                    <p>Usage is simple - just visit the website, and you can start interacting with ChatGPT immediately. Feel free to contribute to the project by providing feedback, reporting issues, or submitting pull requests on GitHub.</p>
+                </div>
                 <div class="project-buttons">
                     <a class="visit-button" href="https://notbubble.github.io/freept">Visit</a>
                     <a class="source-button" href="https://github.com/notBubble/freept">Source Code</a>
@@ -243,4 +266,23 @@
 
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var projectTitles = document.querySelectorAll(".project-title");
+
+            projectTitles.forEach(function(title) {
+                title.addEventListener("click", function() {
+                    var details = this.nextElementSibling;
+                    details.classList.toggle("show");
+                    this.classList.toggle("expanded");
+                });
+
+                // Initial setup to hide project details
+                var details = title.nextElementSibling;
+                details.classList.remove("show");
+            });
+        });
+    </script>
 </body>
+</html>
